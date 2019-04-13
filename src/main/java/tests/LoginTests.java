@@ -21,6 +21,12 @@ public class LoginTests {
 
     @BeforeTest
     public void inicializaTeste() {
+
+
+
+
+
+
         getDriver().get(urlBase);
         login = new LoginPage(relatorio);
     }

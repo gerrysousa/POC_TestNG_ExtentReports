@@ -13,8 +13,8 @@ public class BasePage {
     private static ExtentTest relatorio;
     private static WebDriverWait wait;
 
-    public BasePage(ExtentTest t1) {
-        relatorio = t1;
+    public BasePage(ExtentTest log) {
+        relatorio = log;
         driver = DriverFactory.getDriver();
         wait =  new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
@@ -23,12 +23,12 @@ public class BasePage {
 
     public void escrever(WebElement element, String texto) {
        try {
-//           relatorio.info("set " + element + "'s text as '" + texto + "'");
+           relatorio.info("set " + element + "'s text as '" + texto + "'");
            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
            element.sendKeys(texto);
        }
         catch (Exception e){
- //           relatorio.fail("Element is not available " + element);
+            relatorio.fail("Element is not available " + element);
 
             try {
                 //relatorio.fail("", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot.captureScreen()).build());
@@ -41,7 +41,7 @@ public class BasePage {
 
     public void clicar(WebElement element) {
         try {
-          //  relatorio.info("Click on " + element);
+            relatorio.info("Click on " + element);
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (Throwable e) {

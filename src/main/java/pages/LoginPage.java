@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(ExtentTest t1) {
-        super(t1);
+    public LoginPage(ExtentTest log) {
+        super(log);
     }
 
     @FindBy(id = "username")
