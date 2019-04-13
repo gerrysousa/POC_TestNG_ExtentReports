@@ -1,4 +1,13 @@
 package utils.Steps;
 
-public class LoginSteps {
+import pages.LoginPage;
+
+public class LoginSteps  {
+
+
+    public void fazerLogin(String email, String senha) {
+//        preencherEmail(email);
+//        preencherSenha(senha);
+//        clicarBotaoLogin();
+    }
 }
