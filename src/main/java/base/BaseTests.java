@@ -19,9 +19,9 @@ import static utils.Utils.getScreenshot;
 
 public class BaseTests {
 
-    private static final ExtentHtmlReporter relatorio =new ExtentHtmlReporter("./Reports/learn_automation2.html");
-    protected static final ExtentReports reporter = new ExtentReports();
-    protected  static ExtentTest log;
+    public static ExtentHtmlReporter relatorio =new ExtentHtmlReporter("./Reports/learn_automation2.html");
+    public static ExtentReports reporter = new ExtentReports();
+    public static ExtentTest log;
     protected static WebDriver driver;
 /*
 ExtentHtmlReporter relatorio=new ExtentHtmlReporter("./Reports/learn_automation2.html");
@@ -73,14 +73,36 @@ reporter.flush();
       //  DriverFactory.killDriver();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        //gerarScreenShot();
-        relatorio.flush();
-        //DriverFactory.getDriver().close();
-      //  DriverFactory.killDriver();
+   // @AfterMethod
+   // public void tearDown() {
+   //     //gerarScreenShot();
+   //     relatorio.flush();
+   //     //DriverFactory.getDriver().close();
+   //   //  DriverFactory.killDriver();
+   // }
+
+    @BeforeMethod
+    public void inicializaTeste() {
+        log=reporter.createTest("LoginTest");
+
+
+        //ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/learn_automation2.html");
+        // extent = new ExtentReports();
+        // extent.attachReporter(reporter);
+        // logger=extent.createTest("LoginTest");
     }
 
+    @AfterMethod
+    public void tearDown(ITestResult result) throws IOException
+    {
+        if(result.getStatus()==ITestResult.FAILURE)
+        {
+            String temp= utils.Utils.getScreenshot(getDriver());
+            log.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+        }
 
+        reporter.flush();
+        driver.quit();
+    }
 
 }

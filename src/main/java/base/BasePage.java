@@ -13,8 +13,8 @@ public class BasePage {
     private static ExtentTest log;
     private static WebDriverWait wait;
 
-    public BasePage(ExtentTest log) {
-        this.log = log;
+    public BasePage() {
+        this.log = BaseTests.log;
         driver = DriverFactory.getDriver();
         wait =  new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
