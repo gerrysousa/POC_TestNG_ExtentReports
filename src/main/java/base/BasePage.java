@@ -26,12 +26,12 @@ public class BasePage {
 
     public void escrever(WebElement element, String texto) {
        try {
-           log.info("Escrever: '" + texto + "' no campo: '"+ element +"'");
+           log.info("Escrever: '" + texto + "' no campo: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
            element.sendKeys(texto);
        }
         catch (Exception e){
-            log.fail("Não encontrou o elemento: " + element+"'");
+            log.fail("Não encontrou o elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
 
             try {
                 //relatorio.fail("", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot.captureScreen()).build());
@@ -44,12 +44,13 @@ public class BasePage {
 
     public void clicar(WebElement element) {
         try {
-            log.info("Clicar no elemento: '" + element+"'");
+
+            log.info("Clicar no elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (Throwable e) {
             //log que não conseguiu clicar
-            log.fail("Não conseguiu clicar no elemento: '" + element+"'");
+            log.fail("Não conseguiu clicar no elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
         }
     }
 
