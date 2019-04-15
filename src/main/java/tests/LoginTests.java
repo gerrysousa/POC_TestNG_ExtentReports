@@ -47,11 +47,7 @@ public class LoginTests extends BaseTests {
 //       // logger=extent.createTest("LoginTest");
 //    }
 
-    @BeforeMethod
-    public void inicializaTeste() {
-        getDriver().get(getUrlBase());
-        login = new LoginPage();
-    }
+
 
     @Test
     public void deveLogarComSucesso() throws InterruptedException{

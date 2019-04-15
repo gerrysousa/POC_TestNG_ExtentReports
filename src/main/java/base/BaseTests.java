@@ -38,13 +38,19 @@ public class BaseTests {
 
     }
 
+    @BeforeMethod
+    public void inicializaTeste() {
+        getDriver().get(getUrlBase());
+       // login = new LoginPage();
+    }
+
 //    @BeforeMethod
 //    public void inicializaTeste() {
 //        getDriver().get(urlBase);
 //    }
 
     @AfterMethod
-    public void tearDown(ITestResult result) throws IOException
+    public void afterMethod(ITestResult result) throws IOException
     {
         if(result.getStatus()==ITestResult.FAILURE)
         {
