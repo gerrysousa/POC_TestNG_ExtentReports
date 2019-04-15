@@ -7,6 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static base.DriverFactory.getDriver;
+import static utils.Constantes.urlBase;
+
 public class BasePage {
 
     protected static WebDriver driver;
@@ -15,10 +18,14 @@ public class BasePage {
 
     public BasePage() {
         this.log = BaseTests.log;
-        driver = DriverFactory.getDriver();
-        wait =  new WebDriverWait(driver, 10);
-        PageFactory.initElements(driver, this);
+        //driver =
+                getDriver();
+        wait =  new WebDriverWait(getDriver(), 10);
+        PageFactory.initElements(getDriver(), this);
     }
+
+
+
 
 
     public void escrever(WebElement element, String texto) {

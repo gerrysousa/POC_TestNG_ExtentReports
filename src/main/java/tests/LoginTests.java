@@ -24,9 +24,9 @@ public class LoginTests extends BaseTests {
     private LoginPage login;
     //private static WebDriver driver;
 
-    protected static WebDriver driver;
-    private ExtentTest log1 = BaseTests.log;
-    private static WebDriverWait wait;
+    //protected static WebDriver driver;
+    //private ExtentTest log1 = BaseTests.log;
+   // private static WebDriverWait wait;
 
     /*
     ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/learn_automation2.html");
@@ -47,10 +47,27 @@ public class LoginTests extends BaseTests {
 //       // logger=extent.createTest("LoginTest");
 //    }
 
+    @BeforeMethod
+    public void inicializaTeste() {
+        getDriver().get(getUrlBase());
+        login = new LoginPage();
+    }
 
     @Test
     public void deveLogarComSucesso() throws InterruptedException{
-        //log=reporter.createTest("LoginTest");
+        log=reporter.createTest("LoginTest");
+        login = new LoginPage();
+        login.preencherEmail("administrator");
+        login.clicarBotaoLogin();
+        login.preencherSenha("duarte");
+        login.clicarBotaoLogin();
+
+        Assert.assertTrue(getDriver().getTitle().contains("Minha Visão - MantisBT"));
+    }
+
+    @Test
+    public void devefalhar() throws InterruptedException{
+        log=reporter.createTest("LoginTest_falha");
         login = new LoginPage();
         login.preencherEmail("administrator");
         login.clicarBotaoLogin();
@@ -59,7 +76,6 @@ public class LoginTests extends BaseTests {
 
         Assert.assertTrue(getDriver().getTitle().contains("Google"));
     }
-
 //    @AfterMethod
 //    public void tearDown(ITestResult result) throws IOException
 //    {

@@ -1,6 +1,8 @@
 package tests;
 
 import java.io.IOException;
+
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -36,12 +38,30 @@ public class ExtentReportDemo2
     @Test
     public void loginTest() throws IOException
     {
+        ExtentTest logger=extent.createTest("Logoff Test");
+
+        logger.log(Status.FAIL, "Title verified");
+
         System.setProperty("webdriver.chrome.driver", pathChrome);
         driver=new ChromeDriver();
         driver.get("http://www.google.com");
         System.out.println("title is "+driver.getTitle());
         Assert.assertTrue(driver.getTitle().contains("Google"));
     }
+
+    @Test
+    public void loginTest2() throws IOException
+    {
+        ExtentTest logger=extent.createTest("Logoff Test dassdfa");
+
+        logger.log(Status.FAIL, "Title verified");
+        System.setProperty("webdriver.chrome.driver", pathChrome);
+        driver=new ChromeDriver();
+        driver.get("http://www.google.com");
+        System.out.println("title is "+driver.getTitle());
+        Assert.assertTrue(driver.getTitle().contains("Google"));
+    }
+
 
     // This will run after testcase and it will capture screenshot and add in report
     @AfterMethod
@@ -56,4 +76,17 @@ public class ExtentReportDemo2
         extent.flush();
         driver.quit();
     }
+    /*
+ExtentHtmlReporter relatorio=new ExtentHtmlReporter("./Reports/learn_automation2.html");
+ExtentReports reporter = new ExtentReports();
+reporter.attachReporter(relatorio);
+ExtentTest log;
+
+----
+log=reporter.createTest("LoginTest");
+
+log.log(Status.INFO, "Login to amazon");
+reporter.flush();
+*/
+
 }
