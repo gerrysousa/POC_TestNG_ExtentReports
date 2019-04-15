@@ -24,18 +24,14 @@ public class BasePage {
         PageFactory.initElements(getDriver(), this);
     }
 
-
-
-
-
     public void escrever(WebElement element, String texto) {
        try {
-           log.info("set " + element + "'s text as '" + texto + "'");
+           log.info("Escrever: '" + texto + "' no campo: '"+ element +"'");
            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
            element.sendKeys(texto);
        }
         catch (Exception e){
-            log.fail("Element is not available " + element);
+            log.fail("Não encontrou o elemento: " + element+"'");
 
             try {
                 //relatorio.fail("", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot.captureScreen()).build());
@@ -48,12 +44,12 @@ public class BasePage {
 
     public void clicar(WebElement element) {
         try {
-            log.info("Click on " + element);
+            log.info("Clicar no elemento: '" + element+"'");
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (Throwable e) {
             //log que não conseguiu clicar
-            log.fail("Não conseguiur clicar no elemento " + element);
+            log.fail("Não conseguiu clicar no elemento: '" + element+"'");
         }
     }
 

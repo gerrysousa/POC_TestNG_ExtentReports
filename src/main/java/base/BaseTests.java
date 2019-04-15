@@ -6,12 +6,15 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.LoginPage;
 import utils.Utils;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import static base.DriverFactory.getDriver;
 import static base.DriverFactory.killDriver;
@@ -39,15 +42,17 @@ public class BaseTests {
     }
 
     @BeforeMethod
-    public void inicializaTeste() {
+    public void beforeMethod(Method method, ITestContext context) {
         getDriver().get(getUrlBase());
        // login = new LoginPage();
-    }
+        Test mt = method.getDeclaredAnnotation(Test.class);
+        String description = mt.description();
+        String testName = method.getName();
+        String className = getClass().getName().substring(6);
+        log=reporter.createTest(testName);
+        //Reporter.createTest(testName,description,className);
 
-//    @BeforeMethod
-//    public void inicializaTeste() {
-//        getDriver().get(urlBase);
-//    }
+    }
 
     @AfterMethod
     public void afterMethod(ITestResult result) throws IOException
