@@ -1,7 +1,6 @@
 package pages;
 
 import base.BasePage;
-import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
