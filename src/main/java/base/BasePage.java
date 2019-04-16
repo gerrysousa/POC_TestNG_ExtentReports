@@ -26,7 +26,8 @@ public class BasePage {
 
     public void escrever(WebElement element, String texto) {
        try {
-           log.info("Escrever: '" + texto + "' no campo: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
+           String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
+           log.info("Ação: '" + metodoChamada + "' com o valor: '"+texto+"'");
            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
            element.sendKeys(texto);
        }
@@ -44,8 +45,8 @@ public class BasePage {
 
     public void clicar(WebElement element) {
         try {
-
-            log.info("Clicar no elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
+            String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
+            log.info("Ação: '"+ metodoChamada+"'");
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (Throwable e) {
