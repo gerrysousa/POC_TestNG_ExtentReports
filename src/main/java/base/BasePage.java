@@ -1,6 +1,7 @@
 package base;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,31 +12,26 @@ import static base.DriverFactory.getDriver;
 import static utils.Constantes.urlBase;
 
 public class BasePage {
-
-    protected static WebDriver driver;
     private static ExtentTest log;
     private static WebDriverWait wait;
 
     public BasePage() {
         this.log = BaseTests.log;
-        //driver =
-                getDriver();
         wait =  new WebDriverWait(getDriver(), 10);
         PageFactory.initElements(getDriver(), this);
     }
 
     public void escrever(WebElement element, String texto) {
-       try {
-           String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
+        String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
+        try {
            log.info("Ação: '" + metodoChamada + "' com o valor: '"+texto+"'");
            wait.until(ExpectedConditions.elementToBeClickable(element)).clear();
            element.sendKeys(texto);
        }
         catch (Exception e){
-            log.fail("Não encontrou o elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
-
+            log.fail("Não conseguiu executar a ação: '"+ metodoChamada+"'");
             try {
-                //relatorio.fail("", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot.captureScreen()).build());
+               // log.fail("", MediaEntityBuilder.createScreenCaptureFromPath(ScreenShot.captureScreen()).build());
                 log.error(e.toString());
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -44,14 +40,14 @@ public class BasePage {
     }
 
     public void clicar(WebElement element) {
+        String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
         try {
-            String metodoChamada = Thread.currentThread().getStackTrace()[2].getMethodName();
             log.info("Ação: '"+ metodoChamada+"'");
             wait.until(ExpectedConditions.elementToBeClickable(element)).click();
         }
         catch (Throwable e) {
             //log que não conseguiu clicar
-            log.fail("Não conseguiu clicar no elemento: '"+ element.getTagName() +": "+ element.getAttribute("name") +"'");
+            log.fail("Não conseguiu executar a ação: '"+ metodoChamada+"'");
         }
     }
 
