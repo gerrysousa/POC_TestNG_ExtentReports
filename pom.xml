@@ -17,6 +17,20 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${nomeXml}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <!--includes>
+                        <include>LoginTests.java</include>
+                    </includes-->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -62,5 +76,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>

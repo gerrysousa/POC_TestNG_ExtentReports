@@ -4,6 +4,8 @@ import base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.MinhaVisaoPage;
+
 import static base.DriverFactory.getDriver;
 
 public class LoginTests extends BaseTests {
@@ -16,13 +18,13 @@ public class LoginTests extends BaseTests {
         login = new LoginPage();
         login.preencherEmail("administrator");
         login.clicarBotaoLogin();
-        login.preencherSenha("duarte");
+        login.preencherSenha("administrator");
         login.clicarBotaoLogin();
 
-        Assert.assertTrue(getDriver().getTitle().contains("Minha Visão - MantisBT"));
+        Assert.assertTrue(new MinhaVisaoPage().verificarSeAcessouMinhaVisao());
     }
 
-    @Test (priority = 1, description = "Testa login com falha")
+    /*@Test (priority = 1, description = "Testa login com falha")
     public void devefalhar() throws InterruptedException{
         login = new LoginPage();
         login.preencherEmail("administrator");
@@ -31,6 +33,6 @@ public class LoginTests extends BaseTests {
         login.clicarBotaoLogin();
 
         Assert.assertTrue(getDriver().getTitle().contains("Minha Visão - MantisBT"));
-    }
+    }*/
 
 }

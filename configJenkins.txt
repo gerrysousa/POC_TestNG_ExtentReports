@@ -1,0 +1,78 @@
+======================================Jeito QA NINJA
+Jenkins
+
+1- Acessar a pagina https://jenkins.io/doc/book/installing/
+
+2- Copiar comando do seu SO, executar no terminal do Docker:
+Windows
+-----------
+$ docker run ^
+  -u root ^
+  --rm ^
+  -d ^
+  -p 8080:8080 ^
+  -p 50000:50000 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  jenkinsci/blueocean
+-----------
+
+
+Ele cria o container do Jenkins, que deve estar disponivel no url http://192.168.99.100:8080/  ou http://localhost:8080/
+Ainda é necessári a senha de admin que está dentro do docker.
+
+Listar os containers
+$ docker ps
+
+3- Renomear o container, pegar o ID do container com o comando $ docker ps
+docker rename 123455543 jenkins
+
+4- Acessar o jenkins para pegar a senha de admin
+Executar o shell dentro do container
+$docker exec -i -t jenkins sh
+
+pegar o valor do arquivo "initialAdminPassword"
+$cat  cat /var/jenkins_home/secrets/initialAdminPassword
+
+5- Logar no Jenkins e Customizar jenkins
+Selecionar opção "Instalar plugins recomendados"
+
+6- Criar o usuario
+usuario: administrator
+senha: administrator
+Nome: administrator
+email: email@email.com
+
+6- Definir a url 
+Colocar http://192.168.99.100:8080/ 
+
+Setup ok...
+----------------
+
+Contruir Job
+
+========================================================================================================================================================
+======================================Jeito Doidao do ingles
+1- Baixar jenkins(jenkins.war)
+2- Colocar na pasta desejada c:\jenkins
+3- Abrir CMD e acessar a pasta.
+	$cd c:\jenkins
+4- Instalar jenkins 
+	$java -jar jenkins.war
+	pegar a chave que retornar no cmd '1234567890'
+	
+5- Acessar url "http://localhost:8080/"
+6- Colocar a chave
+7- Instalar plugins sugeridos
+8- Criar usuario
+	username: administrator
+	senha: administrator
+	nome:administrator
+	email:administrator
+
+
+
+
+
+
+

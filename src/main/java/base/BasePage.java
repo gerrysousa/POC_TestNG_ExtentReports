@@ -162,6 +162,11 @@ public class BasePage {
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+    public boolean verificarSeExisteTextoNoTituloDaPagina(String texto) {
+        boolean existe = getDriver().getTitle().contains(texto);
+
+        return existe;
+    }
 
 //===========Precisa ser Refatorado================
 
