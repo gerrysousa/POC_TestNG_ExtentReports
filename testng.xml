@@ -1,6 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite simples">
     <test name="Aprendendo Jenkins">
+        <parameter name ="myBrowser" value="chrome"/>
         <classes>
             <class name="tests.LoginTests"></class>
         </classes>

@@ -162,13 +162,39 @@ public class BasePage {
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
+
+//===========Precisa ser Refatorado================
+
+    public boolean verificarSeExisteTextoNaPagina(String texto) {
+        boolean existe = getDriver().getPageSource().contains(texto);
+
+        return existe;
+    }
+
+    public boolean verificarSeExisteTextoNoElemento(WebElement element, String alerta) {
+        String teste =element.getText();
+        boolean existe = element.getText().contains(alerta);
+
+        return existe;
+    }
+
     public boolean verificarSeExisteTextoNoTituloDaPagina(String texto) {
         boolean existe = getDriver().getTitle().contains(texto);
 
         return existe;
     }
 
-//===========Precisa ser Refatorado================
+    public String obterTextoDoElemento(WebElement element){
+        String test = element.getText();
+        return element.getText();
+    }
+
+//    public void Assert(String alerta) {
+//        boolean existe = getDriver().getTitle().contains(alerta);
+//
+//        return existe;
+//    }
+
 
     public void clicar2(By by) {
         getDriver().findElement(by).click();
