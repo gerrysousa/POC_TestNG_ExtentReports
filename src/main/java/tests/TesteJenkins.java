@@ -30,22 +30,27 @@ public class TesteJenkins {
     @BeforeMethod
     public void setup()
     {
+        System.out.println("Before =================================================");
         ExtentHtmlReporter reporter=new ExtentHtmlReporter(pathProjeto+"\\output\\Reports\\Relatorio_"+getDataString()+"_"+getHoraString()+".html");
         extent = new ExtentReports();
         extent.attachReporter(reporter);
         logger=extent.createTest("LoginTest");
+        System.out.println("Vai sair do Before =================================================");
     }
 
     // Actual Test which will start the application and verify the title
     @Test
     public void loginTest() throws IOException
     {
+        System.out.println("Antes do Testes =================================================");
         ExtentTest logger=extent.createTest("Logoff Test");
         logger.log(Status.FAIL, "Title verified");
 
 //        System.setProperty("webdriver.chrome.driver", pathChrome);
 //        driver=new ChromeDriver();
+        System.out.println("Antes do Testes =================================================");
         getDriver().get("http://www.google.com");
+        System.out.println("Depois de abrir o google =================================================");
         System.out.println("title is "+getDriver().getTitle());
         Assert.assertTrue(getDriver().getTitle().contains("Google"));
     }
@@ -56,6 +61,7 @@ public class TesteJenkins {
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException
     {
+        System.out.println("After =================================================");
         if(result.getStatus()==ITestResult.FAILURE)
         {
             String temp= utils.Utils.getScreenshot(getDriver());
@@ -64,5 +70,6 @@ public class TesteJenkins {
 
         extent.flush();
         getDriver().quit();
+        System.out.println("Vai sair do After =================================================");
     }
 }
