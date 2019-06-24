@@ -11,22 +11,34 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Utils {
-    public static String getScreenshot(WebDriver driver)
-    {
-        TakesScreenshot ts=(TakesScreenshot) driver;
-        File src=ts.getScreenshotAs(OutputType.FILE);
-        String path=System.getProperty("user.dir")+"/output/Screenshot/"+System.currentTimeMillis()+".png";
-        File destination=new File(path);
+import static base.DriverFactory.getDriver;
+import static utils.Constantes.driverLocal;
 
-        try
-        {
-            FileUtils.copyFile(src, destination);
-        } catch (IOException e)
-        {
-            System.out.println("Capture Failed "+e.getMessage());
+public class Utils {
+    public static String getScreenshot(WebDriver driver) throws IOException {
+        String path = "";
+        if (driverLocal==false){
+
+           // String scrBase64 = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BASE64);
+            String scrBase64 ="";
+            return scrBase64;
+
         }
-        return path;
+        else {
+
+            try {
+                TakesScreenshot ts = (TakesScreenshot) driver;
+                File src = ts.getScreenshotAs(OutputType.FILE);
+                path = System.getProperty("user.dir") + "/output/Screenshot/" + System.currentTimeMillis() + ".png";
+                File destination = new File(path);
+                FileUtils.copyFile(src, destination);
+
+            } catch (IOException e) {
+                System.out.println("Capture Failed " + e.getMessage());
+            }
+            return path;
+        }
+
     }
 
     public static String getDataString()

@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import static base.DriverFactory.getDriver;
 import static base.DriverFactory.killDriver;
-import static utils.Constantes.pathProjeto;
-import static utils.Constantes.urlBase;
+import static utils.Constantes.*;
 import static utils.Utils.*;
 
 public class BaseTests {
@@ -55,12 +54,17 @@ public class BaseTests {
         if(result.getStatus()==ITestResult.FAILURE)
         {
             String temp= utils.Utils.getScreenshot(getDriver());
-            log.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+            if (driverLocal==true) {
+                log.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+            }
         }
 
         if(result.getStatus()==ITestResult.SUCCESS)
         {
             String temp= utils.Utils.getScreenshot(getDriver());
+            if (driverLocal==true){
+                log.pass(result.getThrowable().getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+            }
             log.log(Status.PASS, "Title verified");
         }
 
