@@ -22,7 +22,6 @@ public class BaseTests {
     public static ExtentHtmlReporter relatorio; // =new ExtentHtmlReporter("./output/Reports/learn_automation2.html");
     public static ExtentReports reporter;// = new ExtentReports();
     public static ExtentTest log;
-    protected static WebDriver driver;
     public  static String fileName;
 
     public static String getUrlBase() {
