@@ -44,7 +44,7 @@ public class DriverFactory {
 
     private static void createDrive() {
         try {
-            System.setProperty("webdriver.chrome.driver", pathChrome);
+            System.setProperty("webdriver.chrome.driver", pathChromeLinux);
             driver = new ChromeDriver();
 
         } catch (Exception e) {
