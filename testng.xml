@@ -3,7 +3,7 @@
     <test name="Aprendendo Jenkins">
         <parameter name ="myBrowser" value="chrome"/>
         <classes>
-            <class name="tests.ExtentReportDemo2"></class>
+            <class name="tests.TesteJenkins"></class>
         </classes>
     </test>
 </suite>
