@@ -64,12 +64,12 @@ public class TesteJenkins {
         System.out.println("After =================================================");
         if(result.getStatus()==ITestResult.FAILURE)
         {
-            String temp= utils.Utils.getScreenshot(getDriver());
+            String temp= utils.Utils.getScreenshot(driver);
             logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
         }
 
         extent.flush();
-        getDriver().quit();
+        driver.quit();
         System.out.println("Vai sair do After =================================================");
     }
 }
