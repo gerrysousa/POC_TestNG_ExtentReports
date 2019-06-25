@@ -32,6 +32,9 @@
         </plugins>
     </build>
 
+    <properties>
+        <suiteXmlFile>src/test/resources/TestSuites/testng.xml</suiteXmlFile>
+    </properties>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
