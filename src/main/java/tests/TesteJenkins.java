@@ -46,13 +46,13 @@ public class TesteJenkins {
         ExtentTest logger=extent.createTest("Logoff Test");
         logger.log(Status.FAIL, "Title verified");
 
-//        System.setProperty("webdriver.chrome.driver", pathChrome);
-//        driver=new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", pathChrome);
+        driver=new ChromeDriver();
         System.out.println("Antes do Testes =================================================");
-        getDriver().get("http://www.google.com");
+        driver.get("http://www.google.com");
         System.out.println("Depois de abrir o google =================================================");
-        System.out.println("title is "+getDriver().getTitle());
-        Assert.assertTrue(getDriver().getTitle().contains("Google"));
+        System.out.println("title is "+driver.getTitle());
+        Assert.assertTrue(driver.getTitle().contains("Google"));
     }
 
 
