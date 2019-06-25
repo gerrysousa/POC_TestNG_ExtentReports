@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
 import static base.DriverFactory.getDriver;
 import static utils.Constantes.driverLocal;
 
@@ -27,7 +28,7 @@ public class Utils {
         else {
 
             try {
-                TakesScreenshot ts = (TakesScreenshot) driver;
+                TakesScreenshot ts = (TakesScreenshot) getDriver();
                 File src = ts.getScreenshotAs(OutputType.FILE);
                 path = System.getProperty("user.dir") + "/output/Screenshot/" + System.currentTimeMillis() + ".png";
                 File destination = new File(path);

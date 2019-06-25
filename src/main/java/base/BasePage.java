@@ -12,11 +12,13 @@ import utils.Constantes;
 
 import java.util.concurrent.TimeUnit;
 
+
+//import static base.DriverFactory.getDriver;
 import static base.DriverFactory.getDriver;
 import static org.openqa.selenium.remote.ErrorCodes.TIMEOUT;
 import static utils.Constantes.urlBase;
 
-public class BasePage {
+public class BasePage extends BaseTests{
     private static ExtentTest log;
     private static WebDriverWait wait;
 

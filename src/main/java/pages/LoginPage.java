@@ -1,17 +1,19 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage {
+import static base.DriverFactory.getDriver;
 
-    public LoginPage() {
-        super();
-    }
+
+public class LoginPage extends BasePage {
 
     @FindBy(id = "username")
     private WebElement txtEmail;
+
 
     @FindBy(id = "password")
     private WebElement txtSenha;
@@ -22,7 +24,7 @@ public class LoginPage extends BasePage {
 
 
     public void preencherEmail(String email) {
-        escrever(txtEmail, email);
+       escrever(txtEmail, email);
     }
 
     public void preencherSenha(String senha) {
